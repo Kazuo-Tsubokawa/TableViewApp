@@ -54,7 +54,19 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCell.EditingStyle.delete{
+            taskArray.remove(at: indexPath.row)
+            let indexPaths = [indexPath]
+            UserDefaults.standard.set(taskArray, forKey: "add")
+            tableView.deleteRows(at: indexPaths, with: .automatic)
+        }
+        
+    }
+}
+
+
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -100,5 +112,3 @@ class TableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
-}
