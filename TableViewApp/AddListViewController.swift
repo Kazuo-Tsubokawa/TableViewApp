@@ -24,8 +24,14 @@ class AddListViewController: UIViewController {
     @IBAction func addTask(_ sender: Any) {
         
         let userDefaults = UserDefaults.standard //変数に入れる
-        taskArray.append(addTextField.text!) //textFieldで入力されたテキストを入れる
+        //taskArray.append(addTextField.text!) //textFieldで入力されたテキストを入れる
+        
+        if (addTextField.text! != "") {
+            taskArray.append(addTextField.text!)
+        }
+        
         userDefaults.set(taskArray, forKey: "add") //キーAddで配列をUserDefaultsに保存
+        
         self.navigationController?.popViewController(animated: true) //ボタンが押されたら1つ前の画面に戻る雛形みたいなもん
     }
     

@@ -54,7 +54,19 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    
+    //タスクDELETE機能
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            taskArray.remove(at: indexPath.row)  //配列の削除
+            UserDefaults.standard.set(taskArray, forKey: "add")  //配列の保存
+            tableView.deleteRows(at: [indexPath], with: .automatic)  //表示の削除
+        }
+        
+    }
+}
+
+
     /*
      // Override to support conditional editing of the table view.
      override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -62,6 +74,7 @@ class TableViewController: UITableViewController {
      return true
      }
      */
+    
     
     /*
      // Override to support editing the table view.
@@ -99,5 +112,3 @@ class TableViewController: UITableViewController {
      // Pass the selected object to the new view controller.
      }
      */
-    
-}
